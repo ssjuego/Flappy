@@ -5,6 +5,7 @@ using UnityEngine;
 public class PillarMover : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float deadZone = -49;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +16,11 @@ public class PillarMover : MonoBehaviour
     void Update()
     {
         transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime);
+
+        if(transform.position.x < deadZone)
+        {
+            Debug.Log("Pipe Deleted");
+            Destroy(gameObject);
+        }
     }
 }

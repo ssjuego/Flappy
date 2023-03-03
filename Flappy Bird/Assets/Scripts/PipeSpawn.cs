@@ -7,6 +7,7 @@ public class PipeSpawn : MonoBehaviour
     [SerializeField] GameObject Pipes;
     [SerializeField] float spawnRate = 3;
     private float timer = 0;
+    [SerializeField] float pipeOffSet = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,8 @@ public class PipeSpawn : MonoBehaviour
 
     void PipeMaker()
     {
-        Instantiate(Pipes, transform.position, transform.rotation);
+        float lowestPoint = transform.position.y - pipeOffSet;
+        float highestPoint = transform.position.y + pipeOffSet;
+        Instantiate(Pipes, new Vector3(transform.position.x, Random.Range(lowestPoint,highestPoint)), transform.rotation);
     }
 }
