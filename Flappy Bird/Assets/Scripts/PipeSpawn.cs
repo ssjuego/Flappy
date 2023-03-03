@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PipeSpawn : MonoBehaviour
 {
-    [SerializeField] GameObject Pipes;
+    [SerializeField] GameObject Pipes;          //
     [SerializeField] float spawnRate = 3;
     private float timer = 0;
     [SerializeField] float pipeOffSet = 5;
@@ -25,6 +25,7 @@ public class PipeSpawn : MonoBehaviour
         {
             PipeMaker();
             timer = 0;
+            PipeOffsetModifier();
         }
     }
 
@@ -33,5 +34,10 @@ public class PipeSpawn : MonoBehaviour
         float lowestPoint = transform.position.y - pipeOffSet;
         float highestPoint = transform.position.y + pipeOffSet;
         Instantiate(Pipes, new Vector3(transform.position.x, Random.Range(lowestPoint,highestPoint)), transform.rotation);
+    }
+
+    void PipeOffsetModifier()
+    {
+        pipeOffSet = (int)Random.Range(2f, 6f);
     }
 }
