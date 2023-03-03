@@ -7,7 +7,7 @@ public class PipeSpawn : MonoBehaviour
     [SerializeField] GameObject Pipes;
     [SerializeField] float spawnRate = 3;
     private float timer = 0;
-    [SerializeField] float pipeOffSet = 10;
+    [SerializeField] float pipeOffSet = 5;
     // Start is called before the first frame update
     void Start()
     {
