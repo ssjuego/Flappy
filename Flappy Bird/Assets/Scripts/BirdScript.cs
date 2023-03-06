@@ -4,37 +4,36 @@ using UnityEngine;
 
 public class BirdScript : MonoBehaviour
 {
-    public Rigidbody2D rigidBody2D;
-    [SerializeField] float flapjump = 10f;
-    public GameLogic GameLogic;
-    public bool birdIsAlive = true;
-    public float yConstraint = 24f;
-    public float xConstraint = -43f;
+    public Rigidbody2D rigidBody2D;         // bird body
+    [SerializeField] float flapjump = 10f;  // jumping magnitude
+    public GameLogic GameLogic;             // object used to store other classes object. 
+    public bool birdIsAlive = true;         // state of the bird
+    public float xConstraint = -43f;        // Constraint coordinate on the players position in x axis to prevent player from leaving the screen
  
 
     // Start is called before the first frame update
     void Start()
     {
-        GameLogic = GameObject.FindGameObjectWithTag("Player").GetComponent<GameLogic>();
+        GameLogic = GameObject.FindGameObjectWithTag("Player").GetComponent<GameLogic>(); // Accesssing Another gameobjects logic.
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space") && birdIsAlive)
+        if (Input.GetKeyDown("space") && birdIsAlive)           // making the bird jump only when it is alive.
         {
             rigidBody2D.velocity = new Vector2( 0f , flapjump);
         }
 
 
-       if ((transform.position.x <= xConstraint))//  || )  (transform.position.y <= yConstraint)
+       if ((transform.position.x <= xConstraint) || (!((transform.position.y < 23f) && (transform.position.y > -23f))))              // X coordinate constraint  
         {
                     GameLogic.gameover();
                     birdIsAlive = false;
                 }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)     // Bird collided with an object.
     {
         GameLogic.gameover();
         birdIsAlive = false;

@@ -5,14 +5,15 @@ using TMPro;
 
 public class GameLogic : MonoBehaviour
 {
-    public int score;
     public TMP_Text scoreBoard;
     public GameObject gameOverScreen;
+    public int score;
 
-    [ContextMenu("Incrementer")]
+    
+    
     public void addScore(int scoreAdd)
     {
-        score+= scoreAdd;
+        score += scoreAdd;
         scoreBoard.text = score.ToString();
     }
 

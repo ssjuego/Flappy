@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScoreTrigger : MonoBehaviour
 {
     public GameLogic GameLogic;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -12,13 +13,7 @@ public class ScoreTrigger : MonoBehaviour
         GameLogic = GameObject.FindGameObjectWithTag("Player").GetComponent<GameLogic>(); 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         GameLogic.addScore(1);
     }

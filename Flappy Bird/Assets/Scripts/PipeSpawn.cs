@@ -7,11 +7,15 @@ public class PipeSpawn : MonoBehaviour
     [SerializeField] GameObject Pipes;          //
     [SerializeField] float spawnRate = 3;
     private float timer = 0;
-    [SerializeField] float pipeOffSet = 5;
+    public float pipeOffSet = 5;
+    private float lowestPoint = 0;
+    private float highestPoint = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        PipeMaker();
+        lowestPoint = transform.position.y - pipeOffSet;
+        highestPoint = transform.position.y + pipeOffSet;
     }
 
     // Update is called once per frame
@@ -25,19 +29,20 @@ public class PipeSpawn : MonoBehaviour
         {
             PipeMaker();
             timer = 0;
-            PipeOffsetModifier();
         }
     }
 
+
     void PipeMaker()
     {
-        float lowestPoint = transform.position.y - pipeOffSet;
-        float highestPoint = transform.position.y + pipeOffSet;
-        Instantiate(Pipes, new Vector3(transform.position.x, Random.Range(lowestPoint,highestPoint)), transform.rotation);
+        GameObject pipeObstacle = ObjectPooler.SharedInstance.GetPooledObject();
+        if (pipeObstacle != null)
+        {
+            pipeObstacle.transform.position = new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint));
+            pipeObstacle.SetActive(true);
+        }
+        
     }
 
-    void PipeOffsetModifier()
-    {
-        pipeOffSet = (int)Random.Range(2f, 6f);
-    }
+  
 }

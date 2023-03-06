@@ -9,9 +9,13 @@ public class CloudSpawner : MonoBehaviour
     private float timer = 0;
     private float zOffSet = 5f;
     [SerializeField] float cloudOffSet = 10;
+    private float lowestPoint = 0;
+    private float highestPoint = 0;
     // Start is called before the first frame update
     void Start()
     {
+        lowestPoint = transform.position.y - cloudOffSet;
+        highestPoint = transform.position.y + cloudOffSet;
         CloudMaker();
     }
 
@@ -32,9 +36,12 @@ public class CloudSpawner : MonoBehaviour
 
     void CloudMaker()
     {
-        float lowestPoint = transform.position.y - cloudOffSet;
-        float highestPoint = transform.position.y + cloudOffSet;
-        Instantiate(Cloud, new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint), zOffSet), transform.rotation);
+        GameObject pipeObstacle = ObjectPool.SharedInstance.GetPooledObject();
+        if (pipeObstacle != null)
+        {
+            pipeObstacle.transform.position = new Vector3(transform.position.x, Random.Range(lowestPoint, highestPoint),zOffSet);
+            pipeObstacle.SetActive(true);
+        }
     }
 
     void SpawnRateModifier()

@@ -15,8 +15,7 @@ public class CloudMover : MonoBehaviour
 
         if (transform.position.x < deadZone) // Destroying the cloud when not visible
         {
-            Debug.Log("Pipe Deleted");
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
