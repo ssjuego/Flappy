@@ -11,11 +11,14 @@ public class CloudMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime);  // Move the cloud along the negative x axis
-
-        if (transform.position.x < deadZone) // Destroying the cloud when not visible
+        if (BirdStatus.isAlive)
         {
-            gameObject.SetActive(false);
+            transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime);  // Move the cloud along the negative x axis
+
+            if (transform.position.x < deadZone) // Destroying the cloud when not visible
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -22,15 +22,18 @@ public class CloudSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer < spawnRate)
+        if (BirdStatus.isAlive)
         {
-            timer += Time.deltaTime;
-        }
-        else
-        {
-            CloudMaker();
-            timer = 0;
-            SpawnRateModifier();
+            if (timer < spawnRate)
+            {
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                CloudMaker();
+                timer = 0;
+                SpawnRateModifier();
+            }
         }
     }
 
