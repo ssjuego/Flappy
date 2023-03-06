@@ -10,6 +10,8 @@ public class BirdScript : MonoBehaviour
     public GameLogic GameLogic;             // object used to store other classes object. 
            // state of the bird
     public float xConstraint = -43f;        // Constraint coordinate on the players position in x axis to prevent player from leaving the screen
+    private float yMax = 23f;
+    private float yMin = -23f;
  
 
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class BirdScript : MonoBehaviour
         }
 
 
-       if ((transform.position.x <= xConstraint) || (!((transform.position.y < 23f) && (transform.position.y > -23f))))              // X coordinate constraint  
+       if ((transform.position.x <= xConstraint) || (!((transform.position.y < yMax) && (transform.position.y > yMin))))              // X coordinate constraint  
         {
                     GameLogic.gameover();
                     BirdStatus.isAlive = false;
