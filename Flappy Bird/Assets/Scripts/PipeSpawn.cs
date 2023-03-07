@@ -21,8 +21,9 @@ public class PipeSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(BirdStatus.isAlive)
+        if(BirdStatus.isAlive )
         {
+           
             if (timer < spawnRate)
             {
                 timer += Time.deltaTime;

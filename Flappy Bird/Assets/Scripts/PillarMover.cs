@@ -11,7 +11,7 @@ public class PillarMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(BirdStatus.isAlive)
+        if(BirdStatus.isAlive )
         {
             transform.position = transform.position + (Vector3.left * moveSpeed * Time.deltaTime);  // Move the pillar along the negative x axis
 

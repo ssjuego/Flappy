@@ -24,17 +24,23 @@ public class BirdScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space") &&  BirdStatus.isAlive )           // making the bird jump only when it is alive.
-        {
-            rigidBody2D.velocity = new Vector2( 0f , flapjump);
-        }
+        
+        
+                    
+            
+            if (Input.GetKeyDown("space") && BirdStatus.isAlive)           // making the bird jump only when it is alive.
+            {
+                rigidBody2D.velocity = new Vector2(0f, flapjump);
+            }
 
 
-       if ((transform.position.x <= xConstraint) || (!((transform.position.y < yMax) && (transform.position.y > yMin))))              // X coordinate constraint  
-        {
-                    GameLogic.gameover();
-                    BirdStatus.isAlive = false;
-                }
+            if ((transform.position.x <= xConstraint) || (!((transform.position.y < yMax) && (transform.position.y > yMin))))              // X coordinate constraint  
+            {
+                GameLogic.gameover();
+                BirdStatus.isAlive = false;
+                gameObject.SetActive(false);
+            }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)     // Bird collided with an object.
